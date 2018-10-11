@@ -18,14 +18,16 @@ class ft_extract(object):
         :param path:  the relative path of image
         :return: the mat of feature
         '''
-        abs_path = os.getcwd()[0:-4] + path
+        abs_path = os.getcwd() + '/' + path
         img_mat = cv.imread(abs_path)
 
-        self.__imshow__(img_mat, 'original')
+        #self.__imshow__(img_mat, 'original')
 
         g_mat = cv.cvtColor(img_mat, cv.COLOR_BGR2GRAY)
-        self.__imshow__(g_mat, 'gray img')
+        #self.__imshow__(g_mat, 'gray img')
 
-        b_mat = cv.threshold(g_mat, 0, 255, cv.THRESH_OTSU)
-        self.__imshow__(b_mat, 'binary img')
+        thr, b_mat = cv.threshold(g_mat, 0, 255, cv.THRESH_OTSU)
+        #self.__imshow__(b_mat, 'binary img')
+
+        cv.imwrite(abs_path[0:-4] + '_binary.jpg', b_mat)
         return
