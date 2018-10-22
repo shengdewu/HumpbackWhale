@@ -1,9 +1,13 @@
 from hpwl.ft_extract import ft_extract
+from hpwl.predatap import predatap
 import sys
 import os
 
 if '__main__' == __name__:
     print('start identify whale...' + sys.path.pop(0))
+    pdp = predatap()
+    pdp.parse_label('whale_image/train.csv')
+
 
     ft = ft_extract()
 
